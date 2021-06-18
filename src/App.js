@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {
+  Component
+} from 'react';
+import "./App.css"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  
+  state = {
+    date: new Date()
+  }
+  test(){
+    console.log(React);
+  }
+  
+  theInterval;
+
+  componentDidMount() {
+    this.theInterval = setInterval(() => {
+      this.setState({
+        date: new Date()
+      })
+      console.log('intervall en cours');
+      this.test()
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.theInterval)
+  }
+
+  render() {
+    return ( 
+      <div className = 'horloge'>
+        <div className = 'screen'>
+          <p>{this.state.date.toLocaleString()}</p> 
+          
+        </div> 
+      </div>
+    );
+  }
 }
 
 export default App;
